@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<center>
+    <form action="edit" method="post">
+        <table>
+            <tr>
+                <td colspan="2" style="text-align: center; border: 1px solid black">修改用户 [[${student.studentname}]] 的信息</td>
+            </tr>
+            <tr>
+                <td style="text-align: center; border: 1px solid black">编号(stuid)</td>
+                <td>
+                    <input type="text" class="stuid" name="stuid" th:value="${student.stuid}"  style="text-align: center " readonly="readonly" value="Tom">
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center; border: 1px solid black">姓名(Name)</td>
+                <td>
+                    <input type="text" class="studentname" name="studentname" th:value="${student.studentname}"  style="text-align: center" value="Tom">
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center; border: 1px solid black">性别(Sex)</td>
+                <td>
+                    <select name="sex">
+                        <option th:value="男" th:selected="${student.sex=='男'}">男</option>
+                        <option th:value="女" th:selected="${student.sex=='女'}">女</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center; border: 1px solid black">生日(birthday)</td>
+                <td>
+                    <input type="text" class="birthday" style="text-align: center" name="birthday"th:value="${(student.birthday)}">
+                </td>
+            </tr>
+            <tr>
+            <tr>
+                <td style="text-align: center; border: 1px solid black">班级(Classes)</td>
+                <td>
+                    <select name="clsid">
+                        <option th:each="cla:${clslist}" th:value="${cla.clsid}"
+                        th:selected="${student.getAclass().getClsid()==cla.clsid}">[[${cla.classname}]]</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2" style="text-align: center">
+                    <input type="submit" value="保存"/>
+                    <input type="reset" value="重置"/>
+                    <input type="button" value="返回" onclick="window.location.href='/'"/>
+                </td>
+
+            </tr>
+        </table>
+    </form>
+</center>
+</body>
+</html>
